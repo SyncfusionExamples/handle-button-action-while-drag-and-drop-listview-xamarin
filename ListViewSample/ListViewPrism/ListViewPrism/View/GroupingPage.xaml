@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Grouping.GroupingPage"
+                  xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:local="clr-namespace:Grouping"
+                  xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+                  xmlns:dataSource="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable">
+    <ContentPage.BindingContext>
+        <local:ListViewGroupingViewModel x:Name="viewModel" />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid Margin="0">
+            <syncfusion:SfListView x:Name="listView"
+                                   ItemSize="70"
+                                   DragStartMode="OnHold"
+                                   SelectionBackgroundColor="Transparent"
+                                   ItemsSource="{Binding ContactsInfo}">
+                <syncfusion:SfListView.Behaviors>
+                    <local:Behavior/>
+                </syncfusion:SfListView.Behaviors>
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Grid x:Name="grid" RowSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button Grid.Column="0" Text="{Binding ContactName}" x:Name="button1" Command="{Binding BindingContext.TapCommand ,Source={x:Reference Name=listView}}" CommandParameter="{Binding .}"/>
+                                    <Button Grid.Column="1" Text="{Binding ContactName}" x:Name="button2"  Command="{Binding BindingContext.TapCommand ,Source={x:Reference Name=listView}}" CommandParameter="{Binding .}"/>
+                                    <Button Grid.Column="2" Text="{Binding ContactName}" x:Name="button3"  Command="{Binding BindingContext.TapCommand ,Source={x:Reference Name=listView}}" CommandParameter="{Binding .}"/>
+                                </Grid>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
